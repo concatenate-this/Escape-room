@@ -20,6 +20,7 @@ public abstract class Item {
     public abstract String use();
 
     @Override
+    //overriding built in toString() Method
     public String toString() {
         return name + ": " + description;
     }

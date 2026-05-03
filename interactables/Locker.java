@@ -49,6 +49,7 @@ public class Locker implements Unlockable {
         return "The " + name + " is empty.";
     }
 
+//new method not overrriden - handle the dynamic method dispatch for this
     public Item takeContents() {
         Item item = contents;
         contents = null;

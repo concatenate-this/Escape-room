@@ -7,6 +7,7 @@ import items.*;
 import java.util.Scanner;
 import puzzles.*;
 public class GameEngine {
+    //declaring the HAS -A relationship elements of game engine
     private Player player;
     private Room currentRoom;
     private CommandHandler commandHandler;
@@ -45,7 +46,7 @@ public class GameEngine {
         player = new Player(name);
 
         setupRoom();
-     typeWriter("\n" + player.getName() + ", you wake up in a mysterious room...", 100);
+        typeWriter("\n" + player.getName() + ", you wake up in a mysterious room...", 100);
        
         typeWriter("Type 'help' for commands.\n",100);
         currentRoom.describe();
@@ -59,13 +60,14 @@ public class GameEngine {
         }
 
         if (escaped) {
-            typeWriter("\n🎉 CONGRATULATIONS, " + player.getName().toUpperCase() + "! YOU ESCAPED! 🎉",100);
+            typeWriter("\n CONGRATULATIONS, " + player.getName().toUpperCase() + "! YOU ESCAPED! ",100);
         }
 
         scanner.close();
     }
 
     private void setupRoom() {
+        //creating room
         currentRoom = new Room("The Locked Chamber", 
             "A dim room with stone walls. There's a faint musty smell.");
 
@@ -97,6 +99,7 @@ public class GameEngine {
         currentRoom.addPuzzle(codeLock);
     }
 
+//Switch case based comand processor
     private void processCommand(String input) {
         commandHandler.parse(input);
         String action = commandHandler.getAction();
@@ -164,7 +167,7 @@ public class GameEngine {
         System.out.println("  escape         - Try to leave");
         System.out.println("  quit           - Exit game");
     }
-
+//put item in inventory and removes from room
     private void takeItem(String itemName) {
         Item item = currentRoom.takeItem(itemName);
         if (item != null) {
@@ -174,6 +177,7 @@ public class GameEngine {
         }
     }
 
+//show the item's use to user
     private void useItem(String itemName) {
         Item item = player.getItem(itemName);
         if (item != null) {
@@ -196,12 +200,14 @@ public class GameEngine {
         String keyName = scanner.nextLine();
 
         Item item = player.getItem(keyName);
+        //checking if the item is really a key
         if (item instanceof Key) {
             String result = target.unlock((Key) item);
             System.out.println(result);
 
             // If locker unlocked, make contents available
             if (target instanceof Locker && !target.isLocked()) {
+                //Type casting for- dynamic method dispatch
                 Locker locker =  (Locker)target;
                 Item contents = locker.takeContents();
                 if (contents != null) {
@@ -213,7 +219,7 @@ public class GameEngine {
             System.out.println("That's not a key.");
         }
     }
-
+//useful for interactable objects
     private void interactWith(String targetName) {
         Unlockable target = currentRoom.getUnlockable(targetName);
         if (target != null) {
@@ -260,6 +266,7 @@ public class GameEngine {
         }
     }
 
+//works with instances of items(don't confuse with interactables)
     private void inspect(String itemName) {
         // Check room first
         Puzzle puzzle = currentRoom.getPuzzle(itemName);
