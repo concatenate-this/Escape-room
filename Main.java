@@ -1,7 +1,7 @@
 import game.GameEngine;
 public class Main {
      
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
         GameEngine game = new GameEngine();
         game.start();
     }

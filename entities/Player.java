@@ -46,7 +46,7 @@ public class Player {
         return getItem(itemName) != null;
     }
 
-    public void showInventory() throws InterruptedException {
+    public void showInventory() {
         if (inventory.isEmpty()) {
             System.out.println("Your inventory is empty.");
             return;
@@ -57,7 +57,7 @@ public class Player {
             Thread.sleep(500);
             }
            catch(InterruptedException e) {
-               throw new InterruptedException("Problem in typing");
+              System.out.println("Problem in typing");
            }
            
             System.out.println(" - " + item.toString());

@@ -34,7 +34,7 @@ public class GameEngine {
 
         System.out.println();
     }
-    public void start() throws InterruptedException {
+    public void start()  {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("╔═══════════════════════════════════════╗");
@@ -97,7 +97,7 @@ public class GameEngine {
         currentRoom.addPuzzle(codeLock);
     }
 
-    private void processCommand(String input) throws InterruptedException {
+    private void processCommand(String input) {
         commandHandler.parse(input);
         String action = commandHandler.getAction();
         String target = commandHandler.getTarget();

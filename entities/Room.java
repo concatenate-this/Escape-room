@@ -73,7 +73,7 @@ public class Room {
         return doorVisible;
     }
 
-    public void describe() throws InterruptedException {
+    public void describe() {
         GameEngine.typeWriter("\n=== " + name + " ===",100);
         GameEngine.typeWriter(description, 100);
         if (!items.isEmpty()) {
@@ -84,7 +84,7 @@ public class Room {
             Thread.sleep(1000);
             }
            catch(InterruptedException e) {
-               throw new InterruptedException("Problem in typing");
+               System.out.println("Problem in typing");
            }
                 System.out.println(" - " + item.getName());
             }
@@ -96,7 +96,7 @@ public class Room {
             Thread.sleep(100);
             }
            catch(InterruptedException e) {
-               throw new InterruptedException("Problem in typing");
+               System.out.println("Problem in typing");
            }
             System.out.println(" - " + u.getUnlockableName() + (u.isLocked() ? " (locked)" : " (unlocked)"));
             
@@ -109,7 +109,7 @@ public class Room {
             Thread.sleep(100);
             }
            catch(InterruptedException e) {
-               throw new InterruptedException("Problem in typing");
+              System.out.println("Problem in typing");
            }
                 System.out.println(" - " + p.getName() + " (unsolved)");
             }
